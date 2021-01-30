@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/comment.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -31,14 +33,14 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
+
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
+
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
+
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -51,7 +53,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->username }}
+                                    <!-- {{ Auth::user()->username }} -->
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -72,6 +74,21 @@
             </div>
         </nav>
 
+        @if(Auth::user() && Auth::user()->id !== 'undefined')
+            <div class="container">
+                <div class="row justify-content-center pt-4">
+                    <div class="col-md-10">
+                        <div class="card">
+                            <div class="d-flex card-header justify-content-between">
+                                <a href="/p/create">Dodaj post</a>
+                                <div><a href="/profile/{{ Auth::user()->id }}/">View my profile</a></div>
+                                <div>You're logged as: {{ Auth::user()->username }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
         <main class="py-4">
             @yield('content')
         </main>

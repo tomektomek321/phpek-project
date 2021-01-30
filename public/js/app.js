@@ -65859,8 +65859,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+console.log(1);
 
 function followUser(data1) {
+  console.log(2);
   console.log(data1);
   data1.follows = data1.follows == "1" ? false : true;
   axios.post('/follow/' + data1.user).then(function (response) {
@@ -65870,24 +65872,12 @@ function followUser(data1) {
 }
 
 function Example(data) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "row justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "col-md-8"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "card-header"
-  }, "Example Component"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     className: "btn btn-primary",
     onClick: function onClick() {
       return followUser(data);
     }
-  }, data.follows > 0 ? "followujesz" : "follow"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "card-body"
-  }, "I'm an example component!22")))));
+  }, data.follows > 0 ? "followujesz" : "follow");
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Example);

@@ -15,28 +15,28 @@ class ProfilesController extends Controller
     public function index($user)
     {
 
-        //dd(\App\Models\User::find($user));
-        
+        //dd(\App\Models\User::find($user)); die();
+
         $user = \App\Models\User::findOrFail($user);
 
         //echo auth()->user()->following->contains($user->id);
-
+        if(auth()->user()->following)
         $follows = (auth()->user()->following->contains($user->id) == 1) ? true : false;
-        
+
         $postsCount = Cache::remember(
             'count.posts'.$user->id,
             now()->addSeconds(60),
             function() use($user) {
                 return $user->posts->count();
         });
-        
+
         $followersCount = Cache::remember(
             'followers.posts'.$user->id,
             now()->addSeconds(60),
             function() use($user) {
                 return $user->profile->followers->count();
         });
-        
+
         $followingCount = Cache::remember(
             'following.posts'.$user->id,
             now()->addSeconds(60),
@@ -47,42 +47,44 @@ class ProfilesController extends Controller
 
 
         //print_r($user->posts[3]);
-        
+
         return view('profiles.index', [
             'user' => $user,
             'follows' => $follows,
             'postsCount' => $postsCount,
             'followersCount' => $followersCount,
             'followingCount' => $followingCount,
-        
+
         ]);
 
     }
 
 
     public function edit(\App\Models\User $user) {
+        //dd($user);
+        //die();
         $this->authorize('update', $user->profile);
 
 
         //dd(request()->all());
         return view('profiles.edit', compact('user'));
-    
+
     }
 
 
     public function update(\App\Models\User $user) {
 
         $this->authorize('update', $user->profile);
-        
-        
+
+
         $data = request()->validate([
             'title' => 'required',
             'description' => 'required',
-            'url' => 'url',
+            'url' => 'url', // http:// ...
             'image' => '',
         ]);
 
-        //dd(request()->all());
+        //dd($data);
 
         if(request('image')) {
             $imgPath = request('image')->store('profile', 'public');
@@ -98,7 +100,7 @@ class ProfilesController extends Controller
 
 
         return redirect("/profile/{$user->id}");
-    
+
     }
 
 

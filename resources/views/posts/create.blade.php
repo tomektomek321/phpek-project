@@ -27,6 +27,22 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="postContent" class="col-md-4 col-form-label text-md-right">Post postContent</label>
+
+                            <div class="col-md-6">
+                                <textarea id="postContent" type="textarea" class="form-control @error('postContent') is-invalid @enderror" name="postContent" required autocomplete="postContent" autofocus>
+                                    {{ old('postContent') }}
+                                </textarea>
+
+                                @error('postContent')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>post content ?</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="image" class="form-control-label">Post image</label>
 
                             <input type="file" class="form-controll-file" id="image" name="image" >
@@ -37,8 +53,8 @@
                             @enderror
                         </div>
 
-                    
-                    
+
+
 
 
                         <div class="form-group row mb-0">

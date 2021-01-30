@@ -19,7 +19,7 @@ class PostsController extends Controller
     public function index() {
         $users = auth()->user()->following()->pluck('profiles.user_id');
         // latest()
-        $posts = Post::whereIn('user_id', $users)->with('user')->orderBy('created_at', 'DESC')->get();
+        $posts = Post::/*whereIn('user_id', $users)->*/with('user')->orderBy('created_at', 'DESC')->get();
 
         //dd($posts);
 
@@ -39,7 +39,7 @@ class PostsController extends Controller
     public function store() {
         //dd(request()->all());
         $data = request()->validate([
-            
+
             'caption' => 'required',
             'image' => ['required'],
 
@@ -57,9 +57,9 @@ class PostsController extends Controller
         ]);
 
         return redirect('/profile/'.auth()->user()->id);
-        
 
-        
+
+
     }
 
     public function show(\App\Models\Post $post) {
