@@ -15,17 +15,38 @@
                                     <div><h3>{{ $post->caption }}</h3></div>
                                     <div>
                                         <h6>{{ $post->user->username }}</h6>
-                                        <h6><a href="/profile/{{ $post->user->id }}" class="btn btn-outline-light btn-sm">view profile..</a></h6>
+                                        @if($post->user_id != Auth::user()->id)
+                                            <h3>{{ $post->user->username }}
+                                                <a href="/profile/{{ $post->user->id }}" class="btn btn-outline-light btn-sm">view profile..</a>
+                                            </h3>
+                                        @endif
+                                        @if($post->user_id == Auth::user()->id)
+                                            <div class="d-flex">
+                                                <div class="text-blue-600 text-sm hover:text-blue-800 pr-2">
+                                                    <form action="/p/{{ $post->user->id }}/edit" enctype="multipart/form-data"  method="GET">
+                                                        @csrf
+
+                                                        <button type="submit" class="btn btn-warning">Edit post</button>
+                                                    </form>
+                                                </div>
+                                                <div class="text-blue-600 text-sm hover:text-blue-800">
+                                                    <form action="/p/{{ $post->user->id }}" enctype="multipart/form-data"  method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-warning">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
-                                <div style=" height: 420px " class="pb-2 h-420px">
+                                <div class="d-flex justify-content-between items-center p-3 text-white">
+                                    {{ $post->content }}
+                                </div>
+                                <div style="height: 420px" class="pb-2 h-420px imgContainer">
                                     <img src="/storage/{{ $post->image }}" class="w-100 h-100" style="object-fit: cover;">
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="bg-dark">
-                            {{ $post->user->content }}
                         </div>
 
                         <div class="d-flex justify-content-between align-items-center py-3">
@@ -38,8 +59,8 @@
                             <div class="d-flex flex-row my-2">
                                 <img src="https://i.imgur.com/9AZ2QX1.jpg" width="40" class="rounded-image">
                                 <div class="d-flex flex-column ml-2">
-                                    <span class="name">Daniel Frozer</span>
-                                    <small class="comment-text">I like this alot! thanks alot</small>
+                                    <span class="name">Test name</span>
+                                    <small class="comment-text">Test comment 1</small>
                                     <div class="d-flex flex-row align-items-center status">
                                         <small>Like</small>
                                         <small>Reply</small>
@@ -52,8 +73,8 @@
                             <div class="d-flex flex-row mb-2">
                                 <img src="https://i.imgur.com/1YrCKa1.jpg" width="40" class="rounded-image">
                                 <div class="d-flex flex-column ml-2">
-                                    <span class="name">Elizabeth goodmen</span>
-                                    <small class="comment-text">Thanks for sharing!</small>
+                                    <span class="name">Test Name</span>
+                                    <small class="comment-text">Test comment2!</small>
                                     <div class="d-flex flex-row align-items-center status">
                                         <small>Like</small>
                                         <small>Reply</small>

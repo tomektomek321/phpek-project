@@ -18,11 +18,13 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\PostsController::class, 'index']);//->name('home');
+Route::get('/home', [App\Http\Controllers\PostsController::class, 'index']);//->name('home');
 
 
 
 Route::post('/p', [App\Http\Controllers\PostsController::class, 'store']);//->name('profile.show');
 Route::get('/p/create', [App\Http\Controllers\PostsController::class, 'create']);//->name('profile.show');
+Route::delete('/p/{post}', [App\Http\Controllers\PostsController::class, 'destroy']);//->name('profile.show');
 Route::get('/p/{post}', [App\Http\Controllers\PostsController::class, 'show']);//->name('profile.show');
 
 

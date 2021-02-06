@@ -5,17 +5,11 @@
 
 
     <div class="row justify-content-center">
-        <div class="col-md-6">
-
-            <a href="/profile/1">profile 1</a>
-
+        <div class="col-md-10 mx-auto">
             <div class="card">
-                <div class="card-header">Hej {{ $user->username }}: Edytujesz post !</div>
+                <div class="card-header">Edytujesz post</div>
 
                 <div class="card-body">
-                    <div>{{ $user->profile->title }}</div>
-                    <div>{{ $user->profile->description }}</div>
-                    <div> ====================================== </div>
 
                     <form action="/profile/{{$user->id}}" enctype="multipart/form-data"  method="post">
                         @csrf
@@ -69,14 +63,15 @@
 
 
                         <div class="form-group row">
-                            <label for="image" class="form-control-label">Profile image</label>
-
-                            <input type="file" class="form-controll-file" id="image" name="image" >
-                            @error('image')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>xxx</strong>
-                                </span>
-                            @enderror
+                            <label for="image" class="col-md-4 form-control-label text-md-right">Profile image</label>
+                            <div class="col-md-6">
+                                <input type="file" class="form-controll-file" id="image" name="image" >
+                                @error('image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>xxx</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
 
 

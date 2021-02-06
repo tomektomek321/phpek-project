@@ -3,13 +3,13 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">Create  post</div>
 
                 <div class="card-body">
 
-                    <form action="/p" enctype="multipart/form-data"  method="post">
+                    <form action="/p" enctype="multipart/form-data"  method="POST">
                         @csrf
 
                         <div class="form-group row">
@@ -20,37 +20,38 @@
 
                                 @error('caption')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>xxx</strong>
+                                        <strong>set some caption</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="postContent" class="col-md-4 col-form-label text-md-right">Post postContent</label>
+                            <label for="content" class="col-md-4 col-form-label text-md-right">Post content</label>
 
                             <div class="col-md-6">
-                                <textarea id="postContent" type="textarea" class="form-control @error('postContent') is-invalid @enderror" name="postContent" required autocomplete="postContent" autofocus>
-                                    {{ old('postContent') }}
-                                </textarea>
+                                <textarea id="content" type="textarea" class="form-control @error('content') is-invalid @enderror"
+                                    name="content" required autocomplete="content" autofocus
+                                    >{{ old('content') }}</textarea>
 
-                                @error('postContent')
+                                @error('content')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>post content ?</strong>
+                                        <strong>set some content</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="image" class="form-control-label">Post image</label>
-
-                            <input type="file" class="form-controll-file" id="image" name="image" >
-                            @error('image')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>xxx</strong>
-                                </span>
-                            @enderror
+                            <label for="image" class="col-md-4 form-control-label text-md-right">Post image</label>
+                            <div class="col-md-6">
+                                <input type="file" class="form-controll-file" id="image" name="image" >
+                                @error('image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>add some image</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
 
 

@@ -41,6 +41,7 @@ class PostsController extends Controller
         $data = request()->validate([
 
             'caption' => 'required',
+            'content' => 'required',
             'image' => ['required'],
 
         ]);
@@ -53,6 +54,7 @@ class PostsController extends Controller
 
         auth()->user()->posts()->create([
             'caption' =>$data['caption'],
+            'content' =>$data['content'],
             'image' => $path,
         ]);
 
@@ -68,7 +70,14 @@ class PostsController extends Controller
 
     }
 
+    public function destroy($post) {
 
+        $p1 = \App\Models\Post::findOrFail($post);
+
+        Post::where('id', '=', $p1->id)->delete();
+        return redirect('/profile/'.auth()->user()->id);
+
+    }
 
 
 }

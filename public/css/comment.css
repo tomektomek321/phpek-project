@@ -87,3 +87,8 @@ hr {
     outline: 0;
     box-shadow: none
 }
+
+.imgContainer {
+    border: 5px solid white;
+    border-radius: 6px;
+}

@@ -26,18 +26,13 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    laravelGram
+                    HomePage
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
 
                     <ul class="navbar-nav ml-auto">
 
@@ -75,19 +70,19 @@
         </nav>
 
         @if(Auth::user() && Auth::user()->id !== 'undefined')
-            <div class="container">
+            <nav class="container">
                 <div class="row justify-content-center pt-4">
                     <div class="col-md-10">
                         <div class="card">
                             <div class="d-flex card-header justify-content-between">
-                                <a href="/p/create">Dodaj post</a>
+                                <a href="/p/create">Add post</a>
                                 <div><a href="/profile/{{ Auth::user()->id }}/">View my profile</a></div>
                                 <div>You're logged as: {{ Auth::user()->username }}</div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </nav>
         @endif
         <main class="py-4">
             @yield('content')
